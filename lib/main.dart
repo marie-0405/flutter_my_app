@@ -1,5 +1,6 @@
 import 'package:flutter_my_app/my_home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_my_app/sample_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: lightTheme,
       darkTheme: darkTheme,
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const SamplePage(),
     );
   }
 }

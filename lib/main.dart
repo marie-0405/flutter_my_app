@@ -1,38 +1,49 @@
-import 'package:flutter_my_app/my_home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_my_app/sample_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: lightTheme,
-      darkTheme: darkTheme,
-      home: const SamplePage(),
-    );
+        theme: ThemeData(primaryColor: Colors.orange),
+        home: Scaffold(
+            appBar: AppBar(title: const Text("mmmmm")),
+            body: Column(children: [
+              Theme(
+                  data: ThemeData(primaryColor: Colors.red),
+                  child: const Sample(title: "Widget A")),
+              Column(
+                children: [
+                  const Sample(title: "Widget B"),
+                  Theme(
+                    data: ThemeData(primaryColor: Colors.blue),
+                    child: const Sample(title: "Widget C"),
+                  )
+                ],
+              )
+            ])));
   }
 }
 
-final lightTheme = ThemeData.from(
-  colorScheme: const ColorScheme.light(
-    primary: Colors.amber,
-    onPrimary: Colors.white,
-    secondary: Colors.green,
-  ),
-);
+class Sample extends StatelessWidget {
+  const Sample({Key? key, required this.title}) : super(key: key);
 
-final darkTheme = ThemeData.from(
-  colorScheme: const ColorScheme.dark(
-    primary: Colors.blue,
-    onPrimary: Colors.white,
-    secondary: Colors.blueAccent,
-  ),
-);
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+        width: 200,
+        height: 100,
+        child: ColoredBox(
+          color: Theme.of(context).primaryColor,
+          child: Text(title),
+        ));
+  }
+}
